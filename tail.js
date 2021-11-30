@@ -3,9 +3,15 @@ const assertEqual = require('./assertEqual');
 const tail = function(words) {
   let arr = [];
   if (words.length <= 1) {
-    return arr;
+    return arr.length;
+  }
+
+  if (words.length === 2) {
+    let length2 = words.slice(1, 2)
+    return length2.length;
   } else {
-    return words.slice(1, (words.length));
+    let wordLength = words.slice(1, (words.length));
+    return wordLength.length;
   }
 };
 
