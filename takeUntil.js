@@ -1,20 +1,5 @@
-const eqArrays = function(arr1, arr2) {
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
-  let compare = arr1.every(function(value, index) {
-    return arr1[index] === arr2[index];
-  });
-  return compare;
-}
-
-const assertArraysEqual = function(actual, expected) {
-  if (eqArrays(actual, expected)) {
-    console.log(`🦖 Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🦑 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
+const eqArrays = require('./eqArrays');
+const assertArraysEqual = require('./assertArraysEqual');
 
 /* Function returns a "slice of the array with elements taken from the beginning." 
   It should keep going until the callback/predicate returns a truthy value.
@@ -34,21 +19,24 @@ const takeUntil = function(array, callback) {
   return output;
 }
 
-const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
-const results1 = takeUntil(data1, x => x < 0);
-console.log(results1);
 
-console.log('---');
+// const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
+// const results1 = takeUntil(data1, x => x < 0);
+// console.log(results1);
 
-const data2 = ["I've", "been", "to", "Hollywood", ",", "I've", "been", "to", "Redwood"];
-const results2 = takeUntil(data2, x => x === ',');
-console.log(results2);
+// console.log('---');
 
-console.log(assertArraysEqual(results1, [1, 2, 5, 7, 2])); // true
-console.log(assertArraysEqual(results2, ["I've", "been", "to"])); // false
+// const data2 = ["I've", "been", "to", "Hollywood", ",", "I've", "been", "to", "Redwood"];
+// const results2 = takeUntil(data2, x => x === ',');
+// console.log(results2);
+
+// console.log(assertArraysEqual(results1, [1, 2, 5, 7, 2])); // true
+// console.log(assertArraysEqual(results2, ["I've", "been", "to"])); // false
 
 /*
 [ 1, 2, 5, 7, 2 ]
 ---
 [ 'I\'ve', 'been', 'to', 'Hollywood' ]
 */
+
+module.exports = takeUntil;

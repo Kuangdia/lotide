@@ -1,20 +1,5 @@
-const eqArrays = function(arr1, arr2) {
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
-  let compare = arr1.every(function(value, index) {
-    return arr1[index] === arr2[index];
-  });
-  return compare;
-}
-
-const assertArraysEqual = function(actual, expected) {
-  if (eqArrays(actual, expected)) {
-    console.log(`🦖 Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🦑 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
+const eqArrays = require('./eqArrays');
+const assertArraysEqual = require('./assertArraysEqual');
 
 // Return all indices (zero-based positions) in the string
 
@@ -22,17 +7,27 @@ const letterPositions = function(sentence) {
   const results = {};
   const string = sentence.replace(/\s/g, "")
 
-  for (let i = 0 ; i < string.length; i++) {
-    if (!results[string[i]]) {
-      results[string[i]] = [];
+  for (const index in sentence) {
+    if (sentence[index] !== " ") {
+      if (!results[sentence[index]]) {
+        results[sentence[index]] = [];
+      }
+      results[sentence[index]].push(index);
     }
-    results[string[i]].push(i);
   }
+
+  // for (let i = 0 ; i < string.length; i++) {
+  //   if (!results[string[i]]) {
+  //     console.log(!results[string[i]]);
+  //     results[string[i]] = [];
+  //   }
+  //   results[string[i]].push(i);
+  // }
   return results;
 };
 
-assertArraysEqual(letterPositions("hello").h, [0]);
-console.log(letterPositions("lighthouse in the house"));
+// assertArraysEqual(letterPositions("hello").h, [0]);
+// console.log(letterPositions("lighthouse in the house"));
 
 /*
 { 
@@ -48,3 +43,5 @@ console.log(letterPositions("lighthouse in the house"));
   n: [12]
 }
 */
+
+module.exports = letterPositions;
