@@ -2,19 +2,19 @@ const assert = require('chai').assert;
 const tail   = require('../tail');
 
 describe("tail", () => {
-  it("should return 0 if words.length <= 1", () => {
+  it("should return [] if words.length <= 1", () => {
     const word = ["bunny"];
-    assert.strictEqual(tail(word), 0);
+    assert.deepEqual(tail(word), []);
   });
 
-  it("should return 1 if word.length === 2", () => {
+  it("should return word if word.length === 2", () => {
     const word = ["bunny", "lala"];
-    assert.strictEqual(tail(word), 1);
+    assert.deepEqual(tail(word), ["lala"]);
   });
 
-  it("should return 2 if word.length === 3", () => {
+  it("should return words if word.length === 3", () => {
     const word = ["bunny", "lala", "flora"];
-    assert.strictEqual(tail(word), 2);
+    assert.deepEqual(tail(word), ["lala", "flora"]);
   })
 
 })
